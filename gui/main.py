@@ -1,26 +1,37 @@
-import tkinter as tk
-from tkinter import ttk
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget
 from gui.sftp_gui import SFTPWindow
 from gui.ssh_gui import SSHWindow
 
-class MainApplication(tk.Tk):
+class MainApplication(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.title("SSH Client")
-        self.geometry("400x200")
+        self.setWindowTitle("SSH Client")
+        self.setGeometry(100, 100, 400, 200)
 
-        self.sftp_button = ttk.Button(self, text="SFTP Client", command=self.open_sftp_window)
-        self.sftp_button.pack(pady=10)
+        layout = QVBoxLayout()
 
-        self.ssh_button = ttk.Button(self, text="SSH Client", command=self.open_ssh_window)
-        self.ssh_button.pack(pady=10)
+        self.sftp_button = QPushButton("SFTP Client")
+        self.sftp_button.clicked.connect(self.open_sftp_window)
+        layout.addWidget(self.sftp_button)
+
+        self.ssh_button = QPushButton("SSH Client")
+        self.ssh_button.clicked.connect(self.open_ssh_window)
+        layout.addWidget(self.ssh_button)
+
+        container = QWidget()
+        container.setLayout(layout)
+        self.setCentralWidget(container)
 
     def open_sftp_window(self):
-        SFTPWindow(self)
+        self.sftp_window = SFTPWindow()
+        self.sftp_window.show()
 
     def open_ssh_window(self):
-        SSHWindow(self)
+        self.ssh_window = SSHWindow()
+        self.ssh_window.show()
 
 if __name__ == "__main__":
-    app = MainApplication()
-    app.mainloop()
+    app = QApplication([])
+    window = MainApplication()
+    window.show()
+    app.exec_()

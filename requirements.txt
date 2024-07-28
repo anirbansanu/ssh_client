@@ -3,3 +3,5 @@ pyte==0.8.1
 pysftp==0.2.9
 pyftpdlib==1.5.6
 Flask==2.0.2
+PyQt5==5.15.6
+
