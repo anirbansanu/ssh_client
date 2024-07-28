@@ -11,6 +11,8 @@ class SFTPClient:
 
     def connect(self):
         try:
+            cnopts = pysftp.CnOpts()
+            cnopts.hostkeys = None  # Disabling host key checking
             self.sftp = pysftp.Connection(self.hostname, username=self.username, password=self.password, port=self.port)
         except Exception as e:
             logging.error(f"Failed to connect to SFTP server {self.hostname}:{self.port} - {str(e)}")
@@ -18,14 +20,20 @@ class SFTPClient:
 
     def upload(self, local_path, remote_path):
         try:
-            self.sftp.put(local_path, remote_path)
+            if self.sftp:
+                self.sftp.put(local_path, remote_path)
+            else:
+                logging.error(f"Connection not established")
         except Exception as e:
             logging.error(f"Failed to upload file {local_path} to {remote_path} - {str(e)}")
             raise
 
     def download(self, remote_path, local_path):
         try:
-            self.sftp.get(remote_path, local_path)
+            if self.sftp:
+                self.sftp.get(remote_path, local_path)
+            else:
+                logging.error("Connection not established")
         except Exception as e:
             logging.error(f"Failed to download file {remote_path} to {local_path} - {str(e)}")
             raise

@@ -1,0 +1,101 @@
+QMainWindow {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+QTabWidget::pane {
+    border: 1px solid #34495e;
+    background: #34495e;
+}
+
+/* Start QMenu */
+
+QMenuBar {
+    background: #34495e;
+    color: #ecf0f1;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgb(61, 150, 185);
+    font-weight: bold;
+}
+
+QMenuBar::item {
+    background: #34495e;
+    color: #ecf0f1;
+}
+
+QMenuBar::item:selected {
+    background: #1abc9c;
+    color: #2c3e50;
+}
+
+QMenu {
+    background: #34495e;
+    color: #ecf0f1;
+    padding-left: 8px;
+    padding-right: 8px;
+    
+}
+
+QMenu::item:selected {
+    background: #1abc9c;
+    color: #2c3e50;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+/* End QMenu */
+
+QTabBar::tab {
+    background: #34495e;
+    color: #ecf0f1;
+    padding: 10px;
+    border: 1px solid #34495e;
+    border-bottom: none;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: #1abc9c;
+    color: #2c3e50;
+}
+
+QTabBar::close-button {
+    image: url(assets/icons/close-icon.png);
+    subcontrol-position: right;
+}
+
+QTabBar::close-button:hover {
+    image: url(assets/icons/close-icon-hover.png);
+}
+
+QLabel {
+    color: #a2fae8;
+    font-weight: bold;
+    font-size: medium;
+}
+
+QLineEdit {
+    background: #2c3e4f;
+    color: #ecf0f1;
+    border: 2px solid #2c3e50;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+QLineEdit:focus {
+    border: 2px solid #1abc9c;
+}
+
+QPushButton {
+    background: #1abc9c;
+    color: #2c3e50;
+    border: 1px solid #16a085;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background: #16a085;
+}
+

@@ -1,13 +1,10 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox
-from core.sftp_client import SFTPClient
 
-class SFTPWindow(QWidget):
+class TunnelingWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("SFTP Client")
+        self.setWindowTitle("Tunneling")
         self.setGeometry(100, 100, 800, 600)
-
-        self.sftp_client = None
 
         layout = QVBoxLayout()
 
@@ -33,20 +30,19 @@ class SFTPWindow(QWidget):
         layout.addWidget(self.password_entry)
 
         self.connect_button = QPushButton("Connect")
-        self.connect_button.clicked.connect(self.connect_to_sftp)
+        self.connect_button.clicked.connect(self.connect_to_tunnel)
         layout.addWidget(self.connect_button)
 
         self.setLayout(layout)
 
-    def connect_to_sftp(self):
+    def connect_to_tunnel(self):
         hostname = self.hostname_entry.text()
         port = int(self.port_entry.text())
         username = self.username_entry.text()
         password = self.password_entry.text()
 
         try:
-            self.sftp_client = SFTPClient(hostname, port, username, password)
-            self.sftp_client.connect()
-            QMessageBox.information(self, "Success", "Connected to SFTP server")
+            # Implement tunneling logic here
+            QMessageBox.information(self, "Success", "Tunneling started")
         except Exception as e:
             QMessageBox.critical(self, "Error", str(e))
